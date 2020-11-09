@@ -1,0 +1,16 @@
+[Unit]
+Description=Fprintd DBUS daemon
+After=dbus.service
+ 
+[Service]
+Type=simple
+Environment="LD_LIBRARY_PATH=/opt/fprintd-goodix" 
+ExecStart=/opt/fprintd-goodix/fprintd -t
+ 
+Restart=on-failure
+ 
+# Configures the time to wait before service is stopped forcefully.
+TimeoutStopSec=300
+ 
+[Install]
+WantedBy=multi-user.target
