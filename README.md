@@ -6,11 +6,16 @@ The initial package does not provide source code for the reader, so this is curr
 # Installation
 
 Fetch the repository files and save them in `/opt/fprintd-goodix/` (mandatory, or change the path in the service file)
+
 Then you'll have to disable the system genuine `fprintd` service via `sudo systemctl disable fprintd && sudo systemctl stop fprintd`
+
 Then you'll have to symlink the service for it to be usable in systemd: `sudo ln -sf /opt/fprintd-goodix/fprintd-tod.service /etc/systemd/system/fprintd-tod.service`
+
 And enable it (if not done yet): `sudo systemctl enable fprintd-tod && sudo systemctl start fprintd-tod`
 
 Check if it's working: `sudo systemctl status fprintd-tod`
+
+
 It should returns something like this:
 ```
 ● fprintd-tod.service - Fprintd DBUS daemon
@@ -24,4 +29,7 @@ It should returns something like this:
 
 nov. 09 14:49:57 Kapital systemd[1]: Started Fprintd DBUS daemon.
 ```
-Then try to enroll your fingerprint: `fprintd-enroll`, it should detect the device and tell you that it captured your fingerprint.
+
+Then try to enroll your fingerprint: `fprintd-enroll`
+
+It should detect the device and tell you that it captured your fingerprint.
